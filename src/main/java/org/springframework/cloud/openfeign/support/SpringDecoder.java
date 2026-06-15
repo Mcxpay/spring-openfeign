@@ -77,11 +77,6 @@ public class SpringDecoder implements Decoder {
 		}
 
 		@Override
-		public int getRawStatusCode() throws IOException {
-			return this.response.status();
-		}
-
-		@Override
 		public String getStatusText() throws IOException {
 			return this.response.reason();
 		}
