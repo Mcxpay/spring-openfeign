@@ -22,6 +22,7 @@ import java.util.Collections;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import org.springframework.beans.factory.config.AutowireCapableBeanFactory;
 import org.springframework.beans.factory.ObjectProvider;
 import org.springframework.boot.autoconfigure.AutoConfigureAfter;
 import org.springframework.boot.autoconfigure.AutoConfigureBefore;
@@ -64,7 +65,8 @@ public class FeignHalAutoConfiguration {
 			ObjectProvider<HalConfiguration> halConfiguration,
 			ObjectProvider<MessageResolver> messageResolver,
 			ObjectProvider<CurieProvider> curieProvider,
-			ObjectProvider<LinkRelationProvider> linkRelationProvider) {
+			ObjectProvider<LinkRelationProvider> linkRelationProvider,
+			ObjectProvider<AutowireCapableBeanFactory> beanFactory) {
 
 		ObjectMapper mapper = objectMapper.getIfAvailable(ObjectMapper::new).copy();
 		mapper.disable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES);
@@ -77,7 +79,8 @@ public class FeignHalAutoConfiguration {
 
 		Jackson2HalModule.HalHandlerInstantiator halHandlerInstantiator = new Jackson2HalModule.HalHandlerInstantiator(
 				linkRelationProvider.getIfAvailable(), curieProviderInstance,
-				messageResolver.getIfAvailable(), configuration);
+				messageResolver.getIfAvailable(), configuration,
+				beanFactory.getIfAvailable());
 
 		mapper.setHandlerInstantiator(halHandlerInstantiator);
 

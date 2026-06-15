@@ -30,7 +30,7 @@ import feign.codec.Decoder;
 import org.springframework.beans.factory.ObjectFactory;
 import org.springframework.boot.autoconfigure.http.HttpMessageConverters;
 import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpStatus;
+import org.springframework.http.HttpStatusCode;
 import org.springframework.http.client.ClientHttpResponse;
 import org.springframework.web.client.HttpMessageConverterExtractor;
 
@@ -72,8 +72,8 @@ public class SpringDecoder implements Decoder {
 		}
 
 		@Override
-		public HttpStatus getStatusCode() throws IOException {
-			return HttpStatus.valueOf(this.response.status());
+		public HttpStatusCode getStatusCode() throws IOException {
+			return HttpStatusCode.valueOf(this.response.status());
 		}
 
 		@Override

@@ -148,8 +148,7 @@ class FeignClientsRegistrar
 
 	private void registerDefaultConfiguration(AnnotationMetadata metadata, BeanDefinitionRegistry registry) {
 
-		Map<String, Object> defaultAttrs = metadata
-				.getAnnotationAttributes(EnableFeignClients.class.getName(), true);
+		Map<String, Object> defaultAttrs = metadata.getAnnotationAttributes(EnableFeignClients.class.getName(), true);
 
 		if (defaultAttrs != null && defaultAttrs.containsKey("defaultConfiguration")) {
 			String name;
@@ -206,8 +205,7 @@ class FeignClientsRegistrar
 
 					Assert.isTrue(annotationMetadata.isInterface(), "@FeignClient can only be specified on an interface");
 
-					Map<String, Object> attributes = annotationMetadata
-							.getAnnotationAttributes(FeignClient.class.getCanonicalName());
+					Map<String, Object> attributes = annotationMetadata.getAnnotationAttributes(FeignClient.class.getCanonicalName());
 
 					String name = getClientName(attributes);
 
@@ -391,9 +389,7 @@ class FeignClientsRegistrar
 		BeanDefinitionBuilder builder = BeanDefinitionBuilder.genericBeanDefinition(FeignClientSpecification.class);
 		builder.addConstructorArgValue(name); // name
 		builder.addConstructorArgValue(configuration); // class
-		registry.registerBeanDefinition(
-				name + "." + FeignClientSpecification.class.getSimpleName(),
-				builder.getBeanDefinition());
+		registry.registerBeanDefinition(name + "." + FeignClientSpecification.class.getSimpleName(), builder.getBeanDefinition());
 	}
 
 	@Override

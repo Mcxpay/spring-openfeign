@@ -19,7 +19,7 @@ package org.springframework.cloud.openfeign.clientconfig;
 import java.util.Timer;
 import java.util.TimerTask;
 
-import javax.annotation.PreDestroy;
+import jakarta.annotation.PreDestroy;
 
 import org.apache.http.client.config.RequestConfig;
 import org.apache.http.config.RegistryBuilder;

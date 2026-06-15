@@ -22,7 +22,7 @@ import java.util.Timer;
 import java.util.TimerTask;
 import java.util.concurrent.TimeUnit;
 
-import javax.annotation.PreDestroy;
+import jakarta.annotation.PreDestroy;
 
 import feign.Client;
 import feign.Feign;
